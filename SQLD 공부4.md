@@ -121,11 +121,11 @@
   | RENAME | -테이블명 변경<br>`ALTER TABLE <테이블명> RENAME TO <변경 후 테이블명>;`<br>-컬럼명 변경<br>`ALTER TABLE <테이블명> RENAME COLUMN <변경 전 컬럼명> TO <변경 후 컬럼명>;`     |
   | DROP   | -테이블의 컬럼 삭제<br>`ALTER TABLE <테이블명> DROP COLUMN <컬럼명>;`<br>-테이블 생성 시 부여했던 제약조건 삭제<br>`ALTER TABLE <테이블명> DROP CONSTRAINT <제약조건명>;`     |
 
-+ **DROP**
++ **DROP**<br>
   `DROP TABLE <테이블명> (참조관계나 제약조건이 있을 시 추가로 CASCADE CONSTRAINT 넣어야 함)`
 
 + **TRUNCATE**
-  + 테이블은 삭제되지 않지만, 해당 테이블에 있던 모든 행들이 제거되는 명령어.
+  + 테이블은 삭제되지 않지만, 해당 테이블에 있던 모든 행들이 제거되는 명령어.<br>
     `TRUNCATE TABLE <테이블명>;`
  
 + **뷰(VIEW)**
@@ -136,7 +136,7 @@
   + 하나의 테이블로 여러 개의 VIEW 만들 수 있음
   + 삽입, 삭제, 수정 제한적.
   + 테이블 구조 변경 불가능
-  + 독자적 인덱스 생성 불가능
+  + 독자적 인덱스 생성 불가능<br>
   `CREATE VIEW <뷰 명> AS SELECT <컬럼명>, <컬럼명>, <컬럼명> .... FROM <테이블 명>;`
 
 #### 3.DML(Data Manipulation Language)
@@ -150,28 +150,43 @@
   | DELETE | 테이블에 있는 레코드 중에서 특정 레코드 삭제 |
 
 + **SELECT**
-  - 테이블의 전체 컬럼 조회
+  - 테이블의 전체 컬럼 조회<br>
     `SELECT * FROM <테이블명>;`
-  - 테이블의 일부 컬럼 조회
+  - 테이블의 일부 컬럼 조회<br>
     `SELECT <컬럼명> AS <별칭>, <컬럼명> AS <별칭> ... FROM <테이블명>;`
 
 + **INSERT**
-  - 테이블의 전체 컬럼에 데이터 입력
+  - 테이블의 전체 컬럼에 데이터 입력<br>
     `INSERT INTO 테이블명 VALUES(입력값1, 입력값2, ...);`
-  - 테이블의 일부 컬럼에 데이터 입력
+  - 테이블의 일부 컬럼에 데이터 입력<br>
     `INSERT INTO 테이블명(<컬럼명>, <컬럼명>, ...) VALUES(입력값1, 입력값2, ...);`
 
 + **UPDATE**
-  - 해당 컬럼 모든 열의 값이 입력값으로 수정
+  - 해당 컬럼 모든 열의 값이 입력값으로 수정<br>
     `UPDATE 테이블명 SET 컬럼명=입력값;`
-  - 해당 컬럼의 조건에 맞는 열의 값이 입력값으로 수정
+  - 해당 컬럼의 조건에 맞는 열의 값이 입력값으로 수정<br>
     `UPDATE 테이블명 SET 컬럼명=입력값 WHERE 조건절;`
 
 + **DELETE**
-  - 테이블의 전체 데이터 삭제
+  - 테이블의 전체 데이터 삭제<br>
     `DELETE FROM 테이블명;`
-  - 테이블의 일부 데이터 삭제
+  - 테이블의 일부 데이터 삭제<br>
     `DELETE FROM 테이블명 WHERE 조건절;`
+
++ **DELETE, DROP, TRUNCATE 비교**
+  | 구분  | DELETE  | DROP  | TRUNCATE  |
+  | ----- | ------- | ------ | ----------------- |
+  | 명령어 분류 | DML | DDL | DDL |
+  | 삭제 | 데이터만 삭제 | 테이블 삭제 | 테이블 초기화 |
+  | 로그기록 | 로그기록 존재 | 로그기록 삭제 | 로그기록 삭제 |
+  | 디스크 | 디스크 사용량 초기화 안됨 | 디스크 사용량 초기화 | 디스크 사용량 초기화 |
+
++ **Nologging**
+  - 데이터베이스에 데이터 입력하면 Redo Log가 쌓임.
+  - Redo Log가 쌓이면 I/O 발생 -> 속도가 느려짐.
+  - Nologging은 Log 기록 최소화시켜서 입력 시 성능 향상시키는 방법<br>
+    ex)`ALTER TABLE 테이블명 NOLOGGING;`
+       `ALTER TABLE 테이블명 LOGGING;`
   
   
 
