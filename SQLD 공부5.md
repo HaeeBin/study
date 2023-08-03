@@ -152,27 +152,27 @@
 
         -> DEPT 테이블에서 부서지역을 미국의 동부, 중부, 서부로 구분<br>
 
-```sql
-SELECT ENAME, SAL,
-    CASE
-        WHEN SAL >= 2000 THEN 1000
-        ELSE (CASE
-                WHEN SAL >= 1000 THEN 500
-                ELSE 0
-              END)
-    END AS BONUS
-FROM EMP;
-```
+  ```sql
+  SELECT ENAME, SAL,
+      CASE
+          WHEN SAL >= 2000 THEN 1000
+          ELSE (CASE
+                  WHEN SAL >= 1000 THEN 500
+                  ELSE 0
+                END)
+      END AS BONUS
+  FROM EMP;
+  ```
 
         -> EMP에서 급여가 2000이상이면 보너스 1000, 1000이상이면 500, 그 외에 0.<br>
 
-```sql
-SELECT ENAME, DEPTNO,
-    DECODE(DEPTNO, 10, '인사과', 20, '개발부', 
-            30, '경영지원팀', 40, '생산부')
-    AS DEPT
-FROM EMP;
-```
+  ```sql
+  SELECT ENAME, DEPTNO,
+      DECODE(DEPTNO, 10, '인사과', 20, '개발부', 
+              30, '경영지원팀', 40, '생산부')
+      AS DEPT
+  FROM EMP;
+  ```
 
         -> EMP 테이블에서 DEPTNO가 10이면 인사과, 20이면 개발부, 30이면 경영지원팀, 40이면 생산부 분류<br>
 
