@@ -26,29 +26,21 @@
     | VARIAN([DISTINCT \| ALL] 컬럼 \| 표현식) | 컬럼이나 표현식의 분산 출력                          |
     | 기타 통계 함수                            | 벤더별로 다양한 통계식 제공                          |
 
-
-
 + **GROUP BY절, HAVING 절**
   
   + GROUP BY절은 FROM, WHERE절 뒤에 위치.
   
   + 데이터들을 작은 그룹으로 분류하여 소그룹에 대한 항목별로 통계 정보 얻을 때 사용.
-    
-    
-  
-  + HAVING 절은 GROUP BY절의 조건절.
-  
-  + WHERE절은 집계함수 사용 못하지만 HAVING절은 가능.
-    
-    
-  
-  + GROUP BY절을 통해 소그룹별 기준 정하고, SELECT절에 집계 함수 사용.
-  
-  + 집계 함수의 통계 정보는 NULL값 가진 행 제외하고 수행.
-  
-  + WHERE절은 전체 데이터를 그룹으로 나누기 전에 행들을 미리 제거.
 
++ HAVING 절은 GROUP BY절의 조건절.
 
++ WHERE절은 집계함수 사용 못하지만 HAVING절은 가능.
+
++ GROUP BY절을 통해 소그룹별 기준 정하고, SELECT절에 집계 함수 사용.
+
++ 집계 함수의 통계 정보는 NULL값 가진 행 제외하고 수행.
+
++ WHERE절은 전체 데이터를 그룹으로 나누기 전에 행들을 미리 제거.
 
 + **ORDER BY절**
   
@@ -61,8 +53,6 @@
   + SQL Server에서는 NULL을 가장 작은 값으로 간주. 오름차순 정렬 시 가장 앞에 출력.
   
   + ASC : 오름차순 / DESC : 내림차순
-
-
 
 + SELECT 실행 순서
   
@@ -94,24 +84,18 @@
     ```
   
   + -> ERROR : GROUP BY절에 사용하지 않은 일반 컬럼을 SELECT에 사용할 수 없음.
-    
-    
+
++ EX2)
   
-  + EX2)
-    
-    ```sql
-    SELECT JOB
-    FROM EMP
-    GROUP BY JOB
-    HAVING COUNT(*) > 0
-    ORDER BY SAL;
-    ```
-  
-  + -> ERROR : GROUP BY절에 사용하지 않은 일반 컬럼을 ORDER BY절에 서용할 수 없음. 
+  ```sql
+  SELECT JOB
+  FROM EMP
+  GROUP BY JOB
+  HAVING COUNT(*) > 0
+  ORDER BY SAL;
+  ```
 
-
-
-
++ -> ERROR : GROUP BY절에 사용하지 않은 일반 컬럼을 ORDER BY절에 서용할 수 없음. 
 
 #### 2. DCL(Data Control Language)
 
@@ -126,16 +110,12 @@
     | SYS              | DBA 역할을 부여받은 유저                                         |
     | SYSTEM           | 데이터베이스의 모든 시스템 권한을 부여받은 DBA 유저 (Oracle 설치 완료 시 패스워드 설정) |
 
-
-
 + DCL 명령어
   
   | 명령어    | 설명                                                                       |
   | ------ | ------------------------------------------------------------------------ |
   | GRANT  | 권한을 부여하는 명령어<br>ex)GRANT CREATE SESSION TO SQLD;<br>(SQLD 시스템 권한 부여)     |
   | REVOKE | 주어진 권한을 회수하는 명령어<br>ex)REVOKE CREATE SESSION FROM SQLD;<br>(SQLD의 권한 취소) |
-
-
 
 + 오브젝트 권한(Objact Privilege)
   
@@ -151,8 +131,6 @@
     | REFERENCES | 지정된 테이블을 참조하는 제약조건을 생성하는 권한 부여<br>(테이블)            |
     | SELECT     | 지정된 테이블에 대해서 SELECT권한 부여<br>(테이블, VIEWS, SEQUENCE) |
     | UPDATE     | 지정된 테이블에 대해서 UPDATE권한 부여<br>(테이블, VIEWS)           |
-
-
 
 + **Role을 이용한 권한 부여**
   
@@ -178,10 +156,6 @@
     ```
   
   + -> 권한 취소할 때는 REVOKE 사용
-  
-  
-  
-  
 
 #### 3. TCL(Transaction Control Language)
 
@@ -201,8 +175,6 @@
     | 일관성<br>(Consistency) | 트랜잭션이 실행되기 전의 데이터베이스 내용이 잘못 되어 있지 않다면 트랜잭션이 실행된 이후에도 데이터베이스의 내용에 잘못이 있으면 안됨. |
     | 고립성<br>(Isolation)   | 트랜잭션이 실행되는 도중에 다른 트랜잭션이 접근할 수 없음.                                            |
     | 영속성<br>(Durability)  | 트랜잭션이 성공적으로 수행되면 그 트랜잭션이 갱신한 데이터베이스의 내용은 영구적으로 저장됨.                          |
-    
-    
 
 + **TCL**
   
@@ -214,20 +186,37 @@
     | ROLLBACK  | -트랜잭션을 취소하는 명령어.<br>-마지막 COMMIT지점으로 돌아간다.                            |
     | SAVEPOINT | -ROLLBACK시 돌아가는 저장포인트를 지정하는 명령어<br>-하나의 트랜잭션에 여러 개의 SAVEPOINT 지정 가능. |
 
-
-
-
-
 #### 4. JOIN
 
 + **조인(JOIN) 개념**
   
   + 두 개 이상의 테이블들을 연결 또는 결합하여 데이터를 출력하는 것을 JOIN이라고 함.
   + 일반적인 경우 행들은 PRIMARY KEY나 FOREIGN KEY값의 연관에 의해 JOIN 성립.
- 
+    
+    
 
 + **EQUI JOIN(등가 조인)**
-
+  
   + 두 개의 테이블 간에 칼럼 값들이 서로 정확하게 일치하는 경우에 사용되는 방법.
   + JOIN의 조건은 WHERE절에 작성. "="연산자를 사용하여 표현.
-   
+    
+    ```sql
+    SELECT *
+    FROM 테이블1, 테이블2
+    WHERE 테이블1.컬럼명 = 테이블2.컬럼명;
+    ```
+
+
+
++ **Non - EQUI JOIN(비등가 조인)**
+  
+  + 두 개의 테이블 간에 칼럼 값들이 서로 정확하게 일치하지 않는 경우에 사용.
+  
+  + "=" 연산자가 아닌 다른 연산자(BETWEEN, >, >=, <, <= 등)를 사용하여 JOIN 수행.
+    
+    ```sql
+    SELECT *
+    FROM 테이블1, 테이블2
+    WHERE 테이블1.컬럼명1 BETWEEN 테이블2.컬럼명1 AND 테이블2.컬럼명2;
+    //테이블1의 컬럼명1이 테이블2의 컬럼명1과 컬럼명2사이에 있는 행들을 조회
+    ```
