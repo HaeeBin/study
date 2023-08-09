@@ -158,27 +158,34 @@
       FROM 테이블1 LEFT OUTER JOIN 테이블2
       ON 조건절;
       
-      
+      SELECT *
+      FROM 테이블1 JOIN 테이블2
+      ON 테이블1.컬럼명 = 테이블2.컬럼명(+);
       ```
   
-  + 
+  + RIGHT OUTER JOIN
+ 
+    + 동일한 값이 없는 왼쪽 행은 NULL 표시.
+   
+    + ON 조건절의 왼쪽 컬럼명 뒤에 (+)를 붙이면 RIGHT OUTER 생략 가능.
+   
+      ```sql
+      SELECT *
+      FROM 테이블1 RIGHT OUTER JOIN 테이블2
+      ON 조건절;
+      
+      SELECT *
+      FROM 테이블1 JOIN 테이블2
+      ON 테이블1.컬럼명(+) = 테이블2.컬럼명;
+      ```
   
-  + 
+  + FULL OUTER JOIN
+ 
+    + ON 조건절에 (+)를 붙여서 사용할 수 없음.
+   
+      ```sql
+      SELECT *
+      FROM 테이블1 FULL OUTER JOIN 테이블2
+      ON 조건절;
+      ```
   
-  + 
-  
-  + 
-  
-  + 
-  
-  + 
-  
-  + 
-  
-  + 
-  
-  + 
-  
-  + 
-  
-  + 
