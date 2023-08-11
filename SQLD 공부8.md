@@ -158,6 +158,15 @@
     ```
   
   + 예제3
+ 
+    ```sql
+    SELECT EMPNO, ENAME, MGR, LEVEL, 
+    SYS_CONNECT_BY_PATH(EMPNO, '/') PATH
+    FROM EMP
+    START WITH MGR IS NULL
+    CONNECT BY PRIOR EMPNO = MGR
+    ORDER SIBLINGS BY EMPNO;
+    ```
   
   + 
   
