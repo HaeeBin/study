@@ -1,6 +1,6 @@
 # SQLD 공부
 
-## 2,과목 SQL 기본 및 활용 (SQL 기본)
+## 2과목 SQL 기본 및 활용 (SQL 기본)
 
 #### 1. GROUP BY, HAVING 절
 
@@ -26,21 +26,23 @@
     | VARIAN([DISTINCT \| ALL] 컬럼 \| 표현식) | 컬럼이나 표현식의 분산 출력                          |
     | 기타 통계 함수                            | 벤더별로 다양한 통계식 제공                          |
 
+
 + **GROUP BY절, HAVING 절**
   
   + GROUP BY절은 FROM, WHERE절 뒤에 위치.
   
   + 데이터들을 작은 그룹으로 분류하여 소그룹에 대한 항목별로 통계 정보 얻을 때 사용.
 
-+ HAVING 절은 GROUP BY절의 조건절.
+  + HAVING 절은 GROUP BY절의 조건절.
 
-+ WHERE절은 집계함수 사용 못하지만 HAVING절은 가능.
+  + WHERE절은 집계함수 사용 못하지만 HAVING절은 가능.
 
-+ GROUP BY절을 통해 소그룹별 기준 정하고, SELECT절에 집계 함수 사용.
+  + GROUP BY절을 통해 소그룹별 기준 정하고, SELECT절에 집계 함수 사용.
 
-+ 집계 함수의 통계 정보는 NULL값 가진 행 제외하고 수행.
+  + 집계 함수의 통계 정보는 NULL값 가진 행 제외하고 수행.
 
-+ WHERE절은 전체 데이터를 그룹으로 나누기 전에 행들을 미리 제거.
+  + WHERE절은 전체 데이터를 그룹으로 나누기 전에 행들을 미리 제거.
+
 
 + **ORDER BY절**
   
@@ -53,6 +55,7 @@
   + SQL Server에서는 NULL을 가장 작은 값으로 간주. 오름차순 정렬 시 가장 앞에 출력.
   
   + ASC : 오름차순 / DESC : 내림차순
+
 
 + SELECT 실행 순서
   
@@ -96,6 +99,7 @@
   ```
 
 + -> ERROR : GROUP BY절에 사용하지 않은 일반 컬럼을 ORDER BY절에 서용할 수 없음. 
+
 
 #### 2. DCL(Data Control Language)
 
@@ -156,6 +160,7 @@
     ```
   
   + -> 권한 취소할 때는 REVOKE 사용
+
 
 #### 3. TCL(Transaction Control Language)
 
