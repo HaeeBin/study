@@ -21,7 +21,7 @@
                  )
     FROM 테이블명
     ```
-  
+ 
   + WINDOWING 절 문법
     
     ```sql
