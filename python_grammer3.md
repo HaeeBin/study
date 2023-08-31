@@ -89,3 +89,30 @@
             super().about_me()  #새로운 내용 추가위해 작성.
             print("제 급여는", self.salary, "원이고, 제 입사일은", self.hire_date, "입니다.")
     ``` 
++ 다형성
+  + 같은 이름의 메서드가 다른 기능을 할 수 있도록 하는 것.
+    ```python
+    class Animal:
+        def __init__(self, name):
+            self.name = name
+        def talk(self):
+            raise NotImplementedError("Subclass must implement abstract method")
+
+    class Cat(Animal):
+        def talk(self):
+            return 'Meow!'
+
+    class Dog(Animal):
+        def talk(self):
+            return 'Woof!Woof!'
+
+    animals = [Cat('Missy'), Cat('Mr.Mistoffeless'), Dog('Lassie')]
+    for animal in animals:
+        print(animal.name + ": " + animal.talk())
+    #결과 : Missy: Meow!
+    #      Mr.Misoffeless: Meow!
+    #      Lassie: Woof!Woof!
+    ```
++ 가시성
+  + 객체의 정보 접근을 숨기는 것
+  + 캡슐화, 정보 은닉
